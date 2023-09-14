@@ -1,7 +1,32 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import {provideRouter, Routes} from "@angular/router";
 
-import { AppModule } from './app/app.module';
+export const routes: Routes = [
+  {
+    path: 'unauthorized',
+    loadComponent: () =>
+      import('./app/login-page/login-page.component').then(
+        m => m.LoginPageComponent
+      ),
+  },
+  {
+    path: '',
+    children: [
+      { path: '', redirectTo: '/main', pathMatch: 'full' },
+      {
+        path: 'main',
+        loadComponent: () =>
+          import('./app/main/main.component').then(
+            m => m.MainComponent
+          ),
+      },
+    ],
+  },
+];
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, { providers: [
+    provideRouter(routes)
+    ]
+  }
+);
