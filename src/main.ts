@@ -1,6 +1,7 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import {provideRouter, Routes} from "@angular/router";
+import {BsModalService} from "ngx-bootstrap/modal";
 
 export const routes: Routes = [
   {
@@ -21,12 +22,20 @@ export const routes: Routes = [
             m => m.MainComponent
           ),
       },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./app/login-page/login-page.component').then(
+            m => m.LoginPageComponent
+          ),
+      },
     ],
   },
 ];
 
 bootstrapApplication(AppComponent, { providers: [
-    provideRouter(routes)
+    provideRouter(routes),
+    BsModalService
     ]
   }
 );

@@ -1,0 +1,16 @@
+<div>
+  <form [formGroup]="userForm" (ngSubmit)="createAccount()">
+    <input formControlName="firstName" placeholder="Enter first name">
+    <input formControlName="lastName" placeholder="Enter last name">
+    <input formControlName="email" type="email" placeholder="Enter email">
+    <input formControlName="password" type="password" placeholder="Enter password">
+    <input formControlName="confirmPassword" type="password" placeholder="Confirm password">
+    <button
+      type="submit"
+      [disabled]="!userForm.valid"
+    >
+      <span>Create Account</span>
+    </button>
+  </form>
+</div>
+

@@ -1,8 +1,22 @@
-<div>Login</div>
-<div>Login</div>
-<div>Login</div>
-<div>Login</div>
-<div>Login</div>
-<div>Login</div>
-<div>Login</div>
-<div>Login</div>
+<div class="page__wrapper">
+    <div class="page__content">
+      Content
+    </div>
+    <div class="page__login-block">
+      <div>Log in to see your wish list items</div>
+      <form [formGroup]="loginForm" (ngSubmit)="logIn()" class="login-form">
+        <input formControlName="username" placeholder="Username">
+        <input formControlName="password" type="password" placeholder="Password">
+        <button
+          type="submit"
+          [disabled]="!loginForm.valid"
+        >
+          <span>Log In</span>
+        </button>
+      </form>
+      <button (click)="createAccount()">
+        <span>Create account</span>
+      </button>
+    </div>
+</div>
+
